@@ -31,10 +31,10 @@ class BeepPlayer(context: Context) {
             .build()
 
         soundPool.setOnLoadCompleteListener { _, sampleId, status ->
-            Log.d(TAG, "Sound loaded: sampleId=$sampleId, status=$status")
             if (status == 0) {
                 loadLatch.countDown()
             }
+            Log.d(TAG, "Sound loaded: sampleId=$sampleId, status=$status, success=${status == 0}")
         }
 
         beepSoundId = soundPool.load(context, R.raw.beep, 1)
